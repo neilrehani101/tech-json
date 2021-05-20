@@ -14,7 +14,7 @@ function getElemfromString(str){
     return div.firstElementChild;
 }
 select.addEventListener("input", () => {
-    console.log(select.value);
+    // console.log(select.value);
     if (select.value == "Create") {
         main.style.display = "none";
         paramBox.style.display = "block"
@@ -41,7 +41,7 @@ let addParam = document.getElementById('addParam').addEventListener("click", () 
                 </div>`
     let paramElem = getElemfromString(str);
     params.appendChild(paramElem);
-    console.log(paramElem);
+    // console.log(paramElem);
     let btns = document.getElementsByClassName('remove');
     for(item of btns) { 
         item.addEventListener('click', e => {
@@ -53,8 +53,9 @@ let addParam = document.getElementById('addParam').addEventListener("click", () 
 
 submit.addEventListener("click", async () => {
     if (create){
+        code.innerHTML = "Creating your JSON...Please stand by"
         let json = {};
-        console.log(addedParamsCount + 1);
+        // console.log(addedParamsCount + 1);
         for (i=0; i<addedParamsCount+1; i++) {
             if (document.getElementById("paramKey" + (i + 1)) != null){
                 let key = document.getElementById("paramKey" + (i + 1)).value;
@@ -63,15 +64,16 @@ submit.addEventListener("click", async () => {
             }
         }
         code.innerHTML = JSON.stringify(json);
-        console.log(`JSON.stringify(json)`);
+        // console.log(`JSON.stringify(json)`);
         Prism.highlightAll()
     }
     else {
+        code.innerHTML = "Getting your response...Please stand by"
         let u = url.value;
         const response = await fetch(u);
         const data = await response.json();
         code.innerHTML = JSON.stringify(data);
-        console.log(`JSON.stringify(data)`);
+        // console.log(`JSON.stringify(data)`);
         Prism.highlightAll()
     }
     // console.log(addParam);
