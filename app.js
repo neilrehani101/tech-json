@@ -68,7 +68,7 @@ submit.addEventListener("click", async () => {
         Prism.highlightAll()
     }
     else {
-        code.innerHTML = "Getting your response...Please stand by"
+        code.innerHTML = "Getting your response...Please stand by (if it takes a lot of time, there is an error. Check the URL again)"
         let u = url.value;
         const response = await fetch(u);
         const data = await response.json();
